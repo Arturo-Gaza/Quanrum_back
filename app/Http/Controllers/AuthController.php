@@ -70,12 +70,12 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string',
+            'user' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        $user = $this->userRepo->findByEmailOrUser($request->email);
-        $userresponse = $this->userRepo->responseUser($request->email);
+        $user = $this->userRepo->findByEmailOrUser($request->user);
+        $userresponse = $this->userRepo->responseUser($request->user);
         if ($user == null) {
             return response()->json(['message' => 'Credenciales no válidas '], 400);
         }

@@ -8,7 +8,7 @@ interface UsuariosRepositoryInterface
     public function getAll();
     public function getByID($id);
     public function getAllHabilitados();
-    public function findByEmailOrUser(string $email): ?User;
+    public function findByEmailOrUser(string $user): ?User;
     public function responseUser(string $email);
     public function aumentarIntento(int $intentos, $id);
     public function store(array $data);
