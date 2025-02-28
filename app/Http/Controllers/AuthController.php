@@ -84,7 +84,6 @@ class AuthController extends Controller
             'token' => $token,
 
         ], 200);
-        return ApiResponseHelper::sendResponse($userresponse, 'Record insert succesfull', 201);
     }
 
     public function logout(Request $request, $id)

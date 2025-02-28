@@ -9,6 +9,7 @@ class catRoles extends Model
 {
     use HasFactory;
     
+    protected $primaryKey = 'idRol'; 
     protected $table = 'cat_roles';
     protected $fillable = ['nombre_rol', 'habilitado'];
 }

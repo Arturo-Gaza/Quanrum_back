@@ -25,7 +25,11 @@ return new class extends Migration
             $table->boolean('habilitado');
             $table->integer('intentos')->default('0');
             $table->boolean('login_activo')->default(false);
-            $table->foreignId('idRol')->constrained('cat_roles');
+            $table->unsignedBigInteger('idRol'); // Columna para la llave foránea
+            $table->foreign('idRol')
+                ->references('idRol') // Referencia a `id_rol` en `cat_roles`
+                ->on('cat_roles')
+                ->onDelete('cascade');
         });
 
 

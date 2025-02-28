@@ -21,6 +21,8 @@ class StoreCatRolRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+
+    //Reglas que se toman para la creacion de un registro
     public function rules(): array
     {
         return [
@@ -29,11 +31,12 @@ class StoreCatRolRequest extends FormRequest
         ];
     }
 
+    //Mensajes que se mostrar si no se cumple con la regla
     public function messages(): array
     {
         return [
             'nombre_rol.required' => 'El nombre de rol es obligatorio',
-            'nombre_rol.max' => 'El numero maximo es de 60 caracteres',
+            'nombre_rol.max' => 'El número maximo es de 60 caracteres',
             'habilitado.required' => 'El campo habilitado es obligatorio',
         ];
     }
