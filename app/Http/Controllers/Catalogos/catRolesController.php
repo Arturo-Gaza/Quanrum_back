@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Catalogos;
 use App\Classes\ApiResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalogos\Store\StoreCatRolRequest;
+use App\Http\Requests\Catalogos\Update\UpdateCatRolRequest;
 use App\Interface\Catalogos\catRolesRepositoryInterface;
 use Exception;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -76,5 +77,22 @@ class catRolesController extends Controller
             return ApiResponseHelper::rollback($ex);
         }
         
+    }
+
+    public function update(UpdateCatRolRequest $cat, $id)
+    {
+        try{
+            DB::beginTransaction();
+        $data = [
+            'nombre_rol'=> $cat->nombre_rol,
+            'habilitado'=> $cat->habilitado
+        ];
+        $catalog = $this->_catRoles->update($data, $id);
+        DB::commit();
+        return ApiResponseHelper::sendResponse(null, 'Catalogo adctualiozado correctamente', 201);
+        }catch (Exception $ex){
+            DB::rollBack();
+            return ApiResponseHelper::rollback($ex);
+        }
     }
 }

@@ -15,3 +15,4 @@ Route::get('roles/getAll', [catRolesController::class, 'getAll']);
 Route::get('roles/getById/{Id}', [catRolesController::class, 'getById']);
 Route::get('roles/getAllHabilitados', [catRolesController::class, 'getAllHabilitados']);
 Route::post('roles/create', [catRolesController::class, 'store']);
+Route::post('roles/update/{Id}', [catRolesController::class, 'update']);

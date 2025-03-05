@@ -15,7 +15,7 @@ class catRolesRepository implements catRolesRepositoryInterface
 
     public function getById($id): ?catRoles
     {
-        return catRoles::where('id_rol', $id)->first();
+        return catRoles::where('idRol', $id)->first();
     }
 
     public function getAllHabilitados()
@@ -30,6 +30,6 @@ class catRolesRepository implements catRolesRepositoryInterface
 
     public function update(array $data, $id)
     {
-        return catRoles::where('id',$id)->update();
+        return catRoles::where('idRol',$id)->update($data);
     }
 }
