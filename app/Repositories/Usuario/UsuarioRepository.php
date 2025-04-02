@@ -10,9 +10,12 @@ class UsuarioRepository implements UsuariosRepositoryInterface
 {
     public function getAll()
     {
-        $usuario = User::select('users.id', 'users.user', 'users.name', 'users.apellidoP', 'users.apellidoM', 'users.email', 'users.idRol', 'users.habilitado', 'cat_roles.nombre')
-            ->join('cat_roles', 'cat_roles.id', '=', 'users.idRol')->get();
-        return $usuario;
+        $usuario = User::select('users.id', 'users.user', 'users.name', 'users.apellidoP',
+                            'users.apellidoM', 'users.email', 'users.idRol', 'users.habilitado', 'cat_roles.nombre_rol',
+                            'users.created_at', 'users.updated_at')
+        ->join('cat_roles', 'cat_roles.idRol', '=', 'users.idRol') // Cambio aquí
+        ->get();
+    return $usuario;
     }
 
     public function getAllUserAlmacen($idCarga)
@@ -89,7 +92,8 @@ class UsuarioRepository implements UsuariosRepositoryInterface
 
     public function responseUser(string $email)
     {
-        $usuario = User::select('users.id', 'users.user', 'users.name', 'users.idRol', 'users.email', 'users.apellidoP', 'users.apellidoM', 'cat_roles.nombre_rol')
+        $usuario = User::select('users.id', 'users.user', 'users.name', 'users.idRol', 'users.email', 
+                                'users.apellidoP', 'users.apellidoM', 'cat_roles.nombre_rol')
             ->join('cat_roles', 'cat_roles.idRol', '=', 'users.idRol')->where('users.email', $email)->orWhere('users.user', $email)->first();
         return $usuario;
     }
